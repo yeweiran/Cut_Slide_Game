@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class robot : MonoBehaviour
 {
-    public GameObject Up;
-    public GameObject Down;
+    public GameObject Layer1;
+    public GameObject Layer2;
 
-    float liftHight = 0f;
-    float hoverTime = 0f;
+    float L1liftHight = 0f;
+    float L2liftHight = 0f;
+    float L1hoverTime = 0f;
+    float L2hoverTime = 0f;
     // Start is called before the first frame update
-    bool cutFlag = false;
-    bool liftFlag = false;
-    bool hoverFlag = false;
-    bool lowerFlag = false;
+    bool L1cutFlag = false;
+    bool L1liftFlag = false;
+    bool L1hoverFlag = false;
+    bool L1lowerFlag = false;
+    bool L2cutFlag = false;
+    bool L2liftFlag = false;
+    bool L2hoverFlag = false;
+    bool L2lowerFlag = false;
     void Start()
     {
         
@@ -22,58 +28,117 @@ public class robot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (liftFlag)
+        ////Layer1
+        ///
+        if (L1liftFlag)
         {
-            if(liftHight < 1f)
+            if(L1liftHight < 1f)
             {
-                liftHight += Time.deltaTime * 2;
+                L1liftHight += Time.deltaTime * 2;
             }
             else
             {
-                liftHight = 1f;
-                hoverFlag = true;
-                liftFlag = false;
+                L1liftHight = 1f;
+                L1hoverFlag = true;
+                L1liftFlag = false;
             }
-            Up.transform.localPosition = new Vector3(0, liftHight);
+            Layer1.transform.localPosition = new Vector3(0, L1liftHight);
         }
 
-        if (hoverFlag)
+        if (L1hoverFlag)
         {
-            if(hoverTime < 0.5f)
+            if(L1hoverTime < 0.5f)
             {
-                hoverTime += Time.deltaTime;
+                L1hoverTime += Time.deltaTime;
             }
             else
             {
-                hoverTime = 0;
-                hoverFlag = false;
-                lowerFlag = true;
+                L1hoverTime = 0;
+                L1hoverFlag = false;
+                L1lowerFlag = true;
             }
         }
 
-        if (lowerFlag)
+        if (L1lowerFlag)
         {
-            if (liftHight > 0f)
+            if (L1liftHight > 0f)
             {
-                liftHight -= Time.deltaTime * 2;
+                L1liftHight -= Time.deltaTime * 2;
             }
             else
             {
-                liftHight = 0;
+                L1liftHight = 0;
                 //hoverFlag = true;
-                lowerFlag = false;
+                L1lowerFlag = false;
             }
-            Up.transform.localPosition = new Vector3(0, liftHight);
+            Layer1.transform.localPosition = new Vector3(0, L1liftHight);
             
+        }
+
+        ////Layer2
+        ///
+        if (L2liftFlag)
+        {
+            if (L2liftHight < 1f)
+            {
+                L2liftHight += Time.deltaTime * 2;
+            }
+            else
+            {
+                L2liftHight = 1f;
+                L2hoverFlag = true;
+                L2liftFlag = false;
+            }
+            Layer2.transform.localPosition = new Vector3(0, L2liftHight);
+        }
+
+        if (L2hoverFlag)
+        {
+            if (L2hoverTime < 0.5f)
+            {
+                L2hoverTime += Time.deltaTime;
+            }
+            else
+            {
+                L2hoverTime = 0;
+                L2hoverFlag = false;
+                L2lowerFlag = true;
+            }
+        }
+
+        if (L2lowerFlag)
+        {
+            if (L2liftHight > 0f)
+            {
+                L2liftHight -= Time.deltaTime * 2;
+            }
+            else
+            {
+                L2liftHight = 0;
+                //hoverFlag = true;
+                L2lowerFlag = false;
+            }
+            Layer2.transform.localPosition = new Vector3(0, L2liftHight);
+
         }
     }
 
-    void Cut()
+    void Cut(int layer)
     {
-        if(!liftFlag && !hoverFlag && !lowerFlag)
+        if(layer == 1)
         {
-            liftFlag = true;
+            if (!L1liftFlag && !L1hoverFlag && !L1lowerFlag)
+            {
+                L1liftFlag = true;
+            }
         }
+        else
+        {
+            if (!L2liftFlag && !L2hoverFlag && !L2lowerFlag)
+            {
+                L2liftFlag = true;
+            }
+        }      
         
     }
 }

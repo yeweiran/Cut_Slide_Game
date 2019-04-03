@@ -6,6 +6,7 @@ public class test : MonoBehaviour
 {
     private bool pressedFlag = false;
     private bool EnterFlag = false;
+    public int layer;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +53,7 @@ public class test : MonoBehaviour
         if (EnterFlag)
         {
             Debug.Log("A successful SLIDE!");
-            SendMessageUpwards("Cut");
+            SendMessageUpwards("Cut",layer);
             EnterFlag = false;
         }
     }
