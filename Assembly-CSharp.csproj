@@ -60,11 +60,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BackgroundController.cs" />
-    <Compile Include="Assets\Barrier.cs" />
+    <Compile Include="Assets\Scripts\BackgroundController.cs" />
+    <Compile Include="Assets\Scripts\Barrier.cs" />
     <Compile Include="Assets\Scripts\core.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\robot.cs" />
+    <Compile Include="Assets\Scripts\score.cs" />
+    <Compile Include="Assets\Scripts\Slide.cs" />
     <Compile Include="Assets\Scripts\test.cs" />
+    <Compile Include="Assets\sumScore\Example\SumScoreExample.cs" />
+    <Compile Include="Assets\sumScore\Scripts\SumScore.cs" />
+    <Compile Include="Assets\sumScore\Scripts\SumScoreManager.cs" />
+    <None Include="Assets\sumScore\LICENSE.txt" />
+    <None Include="Assets\sumScore\README.md.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Github/Cut_Slide_Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
