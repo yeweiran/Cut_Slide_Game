@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Robot
   - Barrier
+  - ScoreBonus
+  - SpeedBonus
   - BonusBall
   layers:
   - Default

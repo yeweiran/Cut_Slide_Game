@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class robot : MonoBehaviour
+public class Robot : MonoBehaviour
 {
     //public GameObject Layer1;
     //public GameObject Layer2;
@@ -29,29 +29,52 @@ public class robot : MonoBehaviour
     bool[] liftFlagList = { false, false };
     bool[] hoverFlagList = { false, false };
     bool[] lowerFlagList = { false, false };
+
+    public GameObject[] lives;
+    public SpriteRenderer shield;
     void Start()
     {
+        foreach (GameObject live in lives)
+        {
+            live.SetActive(true);
+        }
+        HideShield();
         
     }
+
 
     // Update is called once per frame
     void Update()
     {
+        switch (GameManager.Instance.GetLives())
+        {
+            case 2:
+                lives[2].SetActive(false);
+                break;
+            case 1:
+                lives[1].SetActive(false);
+                break;
+            case 0:
+                lives[0].SetActive(false);
+                break;
+        }
+      
+
         ////Layer1
         ///
-        for(int layer = 0; layer < 2; layer++)
+        for (int layer = 0; layer < 2; layer++)
         {
             if (liftFlagList[layer])
             {
-                if (liftHightList[layer] < 1f)
+                if (liftHightList[layer] < 1.2f)
                 {
                     //liftHightList[layer] += Time.deltaTime * 2;
                     liftHightList[layer] += Time.deltaTime * Mathf.Pow((4 * (1f - liftHightList[layer])),2);
-                    liftHightList[layer] += Time.deltaTime;
+                    liftHightList[layer] += Time.deltaTime * 4;
                 }
                 else
                 {
-                    liftHightList[layer] = 1f;
+                    liftHightList[layer] = 1.2f;
                     hoverFlagList[layer] = true;
                     liftFlagList[layer] = false;
                 }
@@ -76,7 +99,7 @@ public class robot : MonoBehaviour
             {
                 if (liftHightList[layer] > 0f)
                 {
-                    liftHightList[layer] -= Time.deltaTime * 2;
+                    liftHightList[layer] -= Time.deltaTime * 4;
                 }
                 else
                 {
@@ -98,5 +121,15 @@ public class robot : MonoBehaviour
             liftFlagList[i] = true;
         }
         
+    }
+
+    public void ShowShield()
+    {
+        shield.color = new Color(shield.color.r, shield.color.g, shield.color.b, 0.5f);
+    }
+
+    public void HideShield()
+    {
+        shield.color = new Color(shield.color.r, shield.color.g, shield.color.b, 0);
     }
 }

@@ -6,8 +6,8 @@ public class test : MonoBehaviour
 {
     private bool pressedFlag = false;
     private bool EnterFlag = false;
-    public int layer;
-    public int dir;
+    private int layer;
+    //public int dir;
     private Vector2 touchFirst = Vector2.zero;
     private Vector2 touchSecond = Vector2.zero;
     // Start is called before the first frame update
@@ -29,19 +29,28 @@ public class test : MonoBehaviour
             if (pressedFlag)
             {
                 touchSecond = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                if(dir == 0)
+                //if(dir == 0)
+                //{
+                //    if(touchSecond.y - touchFirst.y > 1)
+                //    {
+                //        SuccessSlide();
+                //    }
+                //}
+                //else
+                //{
+                //    if (touchSecond.y - touchFirst.y < -1)
+                //    {
+                //        SuccessSlide();
+                //    }
+                //}
+                if (touchSecond.y - touchFirst.y > 1)
                 {
-                    if(touchSecond.x - touchFirst.x > 1)
-                    {
-                        SuccessSlide();
-                    }
-                }
-                else
+                    layer = 1;
+                    SuccessSlide();
+                }else if (touchSecond.y - touchFirst.y < -1)
                 {
-                    if (touchSecond.x - touchFirst.x < -1)
-                    {
-                        SuccessSlide();
-                    }
+                    layer = 2;
+                    SuccessSlide();
                 }
             }
             pressedFlag = false;
@@ -51,12 +60,6 @@ public class test : MonoBehaviour
 
     void OnMouseEnter()
     {
-        //isShowTip = true;
-        //if (pressedFlag)
-        //{
-        //    EnterFlag = true;
-        //    Debug.Log("Mouse Enter");//可以得到物体的名字
-        //}
         EnterFlag = true;
     }
 
@@ -71,16 +74,5 @@ public class test : MonoBehaviour
         //Debug.Log("A successful SLIDE!");
         SendMessageUpwards("Cut", layer);
     }
-
-    //void EnterCore()
-    //{
-    //    Debug.Log("In Enter Core! EnterFlag: " + EnterFlag);
-
-    //    if (EnterFlag)
-    //    {
-    //        Debug.Log("A successful SLIDE!");
-    //        SendMessageUpwards("Cut",layer);
-    //        EnterFlag = false;
-    //    }
-    //}
+    
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Barrier : MonoBehaviour
 {
+    
     //public float speed = 5;
     // Start is called before the first frame update
     void Start()
@@ -14,13 +15,14 @@ public class Barrier : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x > -9)
+        if(transform.position.x > -10)
         {
             transform.position += new Vector3(-GameManager.Instance.GetSpeed() * Time.deltaTime * 700, 0);
         }
         else
         {
-            transform.position = new Vector3(38, transform.position.y);
+            //transform.position = new Vector3(38, transform.position.y);
+            GameObject.Destroy(gameObject);
         }
         
     }
@@ -35,14 +37,21 @@ public class Barrier : MonoBehaviour
             {
                 Debug.Log("Hit Barrier");
                 GameManager.Instance.HitBarrier();
+                
             }
-            if(this.tag == "BonusBall")
+            if(this.tag == "SpeedBonus")
             {
                 Debug.Log("Hit Bonus");
-                GameManager.Instance.HitBonus();
+                GameManager.Instance.HitSpeedBonus();
             }
-            
+            if (this.tag == "ScoreBonus")
+            {
+                Debug.Log("Hit Bonus");
+                GameManager.Instance.HitScoreBonus();
+            }
+
         }
-       //GameObject.Find("BackgroundObject").GetComponent<BackgroundController>().speed = 0;
+        //GameObject.Find("BackgroundObject").GetComponent<BackgroundController>().speed = 0;
     }
+
 }

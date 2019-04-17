@@ -62,11 +62,15 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BackgroundController.cs" />
     <Compile Include="Assets\Scripts\Barrier.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\core.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\robot.cs" />
+    <Compile Include="Assets\Scripts\Robot.cs" />
+    <Compile Include="Assets\Scripts\sceneManager.cs" />
     <Compile Include="Assets\Scripts\score.cs" />
+    <Compile Include="Assets\Scripts\SelfDestroy.cs" />
     <Compile Include="Assets\Scripts\Slide.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\test.cs" />
     <Compile Include="Assets\sumScore\Example\SumScoreExample.cs" />
     <Compile Include="Assets\sumScore\Scripts\SumScore.cs" />

@@ -9,10 +9,16 @@ public class Slide : MonoBehaviour
     public int layer;
     private Vector2 touchFirst = Vector2.zero;
     private Vector2 touchSecond = Vector2.zero;
+    private Animator animator;
+
+    [HideInInspector]
+    public Animator handAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
+        handAnimator = GameObject.Find("Robot").GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -22,6 +28,7 @@ public class Slide : MonoBehaviour
         {
             touchFirst = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pressedFlag = true;
+            animator.Play("SkateboardLarger");
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -31,11 +38,14 @@ public class Slide : MonoBehaviour
                 if (touchSecond.y - touchFirst.y < -1)
                 {
                     SuccessSlide();
+                    animator.Play("SkateboardMove");
+                    handAnimator.Play("hands");
                 }
             }
             pressedFlag = false;
             //EnterFlag = false;
         }
+      
     }
 
     void OnMouseEnter()
